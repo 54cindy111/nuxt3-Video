@@ -1,0 +1,25 @@
+
+  .el-menu {
+    width: 93px;
+  }
+  .menu-link{
+    margin-left: 16px;
+    margin-bottom: 20px;
+    padding: 8px 0;
+    text-align: center;
+    width: 96px;
+    border-radius: 10px;
+    color: $primary;
+    font-weight: 600;
+    cursor: pointer;
+    &:hover {
+      background-color: #f8f7f7;
+    }
+  }
+
+  ::v-deep {
+    .el-menu {
+      border: none;
+      background-color: transparent;
+    }
+  }
