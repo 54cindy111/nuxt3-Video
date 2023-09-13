@@ -1,15 +1,15 @@
 <template>
   <div
     v-if="loading"
-    class="mask"
     v-loading="loading"
+    class="mask"
     element-loading-background="rgba(0, 0, 0, 0)"
   />
 </template>
 
 <script lang="ts" setup>
-  import { useAppStore } from '@/store/app';
-  const { loading } = useAppStore()
+import { useAppStore } from '@/store/app'
+const { loading } = useAppStore()
 </script>
 
 <style scoped>

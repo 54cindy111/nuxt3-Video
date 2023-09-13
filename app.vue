@@ -1,14 +1,13 @@
 <template>
-	<div>
-		<NuxtLayout>
-			<NuxtPage />
-		</NuxtLayout>
+  <div>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
     <Loading />
-	</div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-
 onMounted(() => {
   //
 })

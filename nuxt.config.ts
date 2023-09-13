@@ -7,28 +7,28 @@ export default defineNuxtConfig({
     strict: true
   },
   runtimeConfig: {
-		public: {
+    public: {
       baseUrl: process.env.NUXT_PUBLIC_API_BASE
-		},
-	},
+    }
+  },
   modules: [
     '@pinia/nuxt',
-    '@nuxtjs/i18n',
+    '@nuxtjs/i18n'
   ],
   vite: {
-		css: {
-			preprocessorOptions: {
-				scss: {
-					uietDeps: true,
-				},
-			},
-		},
-	},
+    css: {
+      preprocessorOptions: {
+        scss: {
+          uietDeps: true
+        }
+      }
+    }
+  },
   i18n: {
     vueI18n: './i18n.config.ts'
   },
-  css: ['element-plus/dist/index.css','@/assents/styles/index.scss'],
+  css: ['element-plus/dist/index.css', '@/assents/styles/index.scss'],
   alias: {
-		'@': resolve(__dirname, './'),
-	},
+    '@': resolve(__dirname, './')
+  }
 })

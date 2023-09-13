@@ -1,8 +1,6 @@
-// @ts-ignore
-import { tw, en } from '@/lib/i18n'
 import elementlangEn from 'element-plus/es/locale/lang/en'
 import elementlangZhTw from 'element-plus/es/locale/lang/zh-tw'
-
+import { tw, en } from '@/lib/i18n'
 
 const messages = {
   tw: {

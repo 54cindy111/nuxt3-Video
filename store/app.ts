@@ -1,14 +1,14 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
 
 export const useAppStore = defineStore('app', () => {
-  const loading = ref(0);
+  const loading = ref(0)
   const setLoading = (data:any) => {
-    loading.value = data;
-  };
+    loading.value = data
+  }
 
   return {
     loading,
-    setLoading,
-  };
-},
-);
+    setLoading
+  }
+}
+)

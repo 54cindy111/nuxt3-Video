@@ -2,9 +2,9 @@ import request from '@/utils/request'
 
 const baseUrl = ''
 
-//user
+// user
 
-function login(data: any) {
+function login (data: any) {
   return request({
     url: baseUrl + '/login',
     method: 'POST',

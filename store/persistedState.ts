@@ -1,43 +1,42 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
 
 export const usePersistedStateStore = defineStore('persistedState', () => {
-  const lang = ref('');
+  const lang = ref('')
   const setLang = (data:any) => {
-    lang.value = data;
-  };
+    lang.value = data
+  }
 
-  const token = ref('');
+  const token = ref('')
   const setToken = (data:any) => {
-    token.value = data;
-  };
+    token.value = data
+  }
 
-  const theme = ref('light');
+  const theme = ref('light')
   const setTheme = (data:any) => {
-    theme.value = data;
-  };
+    theme.value = data
+  }
 
-  const refreshToken = ref('');
+  const refreshToken = ref('')
   const setRefreshToken = (data:any) => {
-    refreshToken.value = data;
-  };
+    refreshToken.value = data
+  }
 
   const loginData:any = {
     username: '',
     password: ''
   }
   const setLoginData = (data:any) => {
-    loginData.value = data;
-  };
+    loginData.value = data
+  }
 
   const cleanPersistedState = () => {
-    token.value = '';
-    refreshToken.value = '';
+    token.value = ''
+    refreshToken.value = ''
     loginData.value = {
       username: '',
       password: ''
-    };
-  };
-
+    }
+  }
 
   return {
     lang,
@@ -50,10 +49,10 @@ export const usePersistedStateStore = defineStore('persistedState', () => {
     setRefreshToken,
     loginData,
     setLoginData,
-    cleanPersistedState,
-  };
+    cleanPersistedState
+  }
 },
 {
-  persist: true,
-},
-);
+  persist: true
+}
+)

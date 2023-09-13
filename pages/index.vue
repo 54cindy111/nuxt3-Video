@@ -1,11 +1,12 @@
 <template>
- <div>
-    {{ $t('greet') }}
+  <div>
+    <!-- {{ $t('greet') }} -->
+    <NuxtWelcome />
   </div>
 </template>
 
 <script lang="ts" setup>
-const runtimeConfig = useRuntimeConfig()
+// const runtimeConfig = useRuntimeConfig()
 // const { baseUrl } = runtimeConfig.public
 </script>
 

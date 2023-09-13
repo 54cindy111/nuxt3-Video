@@ -1,6 +1,6 @@
 import axios from 'axios'
+import { storeToRefs } from 'pinia'
 import { useStores } from '@/store'
-import { storeToRefs } from "pinia";
 
 const service = axios.create({
   baseURL: `${process.env.NUXT_PUBLIC_API_BASE}`,
@@ -9,32 +9,32 @@ const service = axios.create({
 })
 
 service.interceptors.request.use(
-  config => {
+  (config) => {
     const url: any = config.url
 
-    const $stores = useStores();
+    const $stores = useStores()
     //
-    const { loading } = storeToRefs($stores.appStore);
-    $stores.appStore.setLoading(loading.value + 1);
+    const { loading } = storeToRefs($stores.appStore)
+    $stores.appStore.setLoading(loading.value + 1)
     //
-    const { token } = storeToRefs($stores.persistedStateStore);
+    const { token } = storeToRefs($stores.persistedStateStore)
     if (token.value) {
-      config.headers['authorization'] = 'Bearer ' + token.value
+      config.headers.authorization = 'Bearer ' + token.value
     }
 
     return config
   },
-  error => {
+  (error) => {
     return Promise.reject(error)
   }
 )
 
 service.interceptors.response.use(
-  response => {
-    const $stores = useStores();
+  (response) => {
+    const $stores = useStores()
     //
-    const { loading } = storeToRefs($stores.appStore);
-    $stores.appStore.setLoading(loading.value - 1);
+    const { loading } = storeToRefs($stores.appStore)
+    $stores.appStore.setLoading(loading.value - 1)
 
     if (response.status === 200 && response.data) {
       const { data } = response
@@ -47,17 +47,17 @@ service.interceptors.response.use(
       return response
     }
   },
-  error => {
-    const $stores = useStores();
+  (error) => {
+    const $stores = useStores()
     //
-    const { loading } = storeToRefs($stores.appStore);
-    $stores.appStore.setLoading(loading.value - 1);
+    const { loading } = storeToRefs($stores.appStore)
+    $stores.appStore.setLoading(loading.value - 1)
 
     const response = error.response
     if (response) {
       switch (response.status) {
         case 401:
-          $stores.persistedStateStore.cleanPersistedState();
+          $stores.persistedStateStore.cleanPersistedState()
           // router.push({ name: 'Login' })
           break
         case 403:
