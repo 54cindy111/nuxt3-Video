@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --dotenv .env.development",
-		"prod": "nuxt dev --dotenv .env.production",
+    "dev": "nuxt dev --dotenv .env.development --port=5678",
+    "prod": "nuxt dev --dotenv .env.production",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -22,14 +22,19 @@
     "nuxt": "^3.7.0",
     "prettier": "^3.0.3",
     "sass": "^1.66.1",
+    "video.js": "^8.5.2",
+    "videojs-contrib-hls": "^5.15.0",
     "vue-tsc": "^1.8.10"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.11",
+    "@videojs-player/vue": "^1.0.0",
     "axios": "^1.5.0",
     "element-plus": "^2.3.12",
+    "mitt": "^3.0.1",
     "pinia": "^2.1.6",
     "pinia-plugin-persistedstate": "^3.2.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vue-scrollto": "^2.20.0"
   }
 }

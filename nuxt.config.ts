@@ -27,7 +27,7 @@ export default defineNuxtConfig({
   i18n: {
     vueI18n: './i18n.config.ts'
   },
-  css: ['element-plus/dist/index.css', '@/assents/styles/index.scss'],
+  css: ['element-plus/dist/index.css', '@/assents/styles/index.scss', 'video.js/dist/video-js.css'],
   alias: {
     '@': resolve(__dirname, './')
   }

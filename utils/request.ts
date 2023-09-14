@@ -2,8 +2,15 @@ import axios from 'axios'
 import { storeToRefs } from 'pinia'
 import { useStores } from '@/store'
 
+const getBaseUrl = async () => {
+  const runtimeConfig = await useRuntimeConfig()
+  const { baseUrl } = runtimeConfig.public
+  return baseUrl
+}
+
 const service = axios.create({
-  baseURL: `${process.env.NUXT_PUBLIC_API_BASE}`,
+  // baseURL: getBaseUrl(),
+  baseURL: 'http://localhost:3000/',
   withCredentials: false,
   timeout: 20000
 })
@@ -11,7 +18,6 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     const url: any = config.url
-
     const $stores = useStores()
     //
     const { loading } = storeToRefs($stores.appStore)
@@ -31,6 +37,7 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   (response) => {
+    console.log(response)
     const $stores = useStores()
     //
     const { loading } = storeToRefs($stores.appStore)
@@ -38,10 +45,10 @@ service.interceptors.response.use(
 
     if (response.status === 200 && response.data) {
       const { data } = response
-      if (data.code === 200) {
-        return data.result
+      if (data.items) {
+        return data.items
       } else {
-        return data.result
+        return data
       }
     } else {
       return response
