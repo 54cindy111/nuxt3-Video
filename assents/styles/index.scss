@@ -3,6 +3,7 @@
 @import './element-variables.scss';
 
 :root {
+  background-color: #000;
   // 針對全局(Font color, Border color, etc...)
   --primary: #{$primary};
   // 輔色-用於元素背景
