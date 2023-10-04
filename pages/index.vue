@@ -12,7 +12,7 @@
         <span @click="changeList('ForYou')">For You</span>
       </el-row>
     </el-header>
-    <el-main>
+    <el-main id="mainRef">
       <div v-for="(item,i) in videoList" :key="item">
         <el-row
           v-if="item.play_url"
@@ -74,41 +74,46 @@ const getForYouList = async () => {
 }
 
 //
-const videoIndex:any = ref(0)
-const screenY:any = ref(0)
 const changeList = async (x = 'Following') => {
   x === 'Following' ? await getFollowingList() : await getForYouList()
 }
-const doScroll = (event:any) => {
-  const scrollHeight = event.target.scrollHeight
-  const scrollTop = event.target.scrollTop
-  const clientHeight = event.target.clientHeight
-  if (scrollTop > screenY.value) {
-    screenY.value = scrollTop
-    if (videoIndex.value < videoList.value.length) {
-      videoIndex.value = videoIndex.value + 1
-      document.getElementById(`vid${videoIndex.value}`).scrollIntoView(true)
-    }
-    // console.log('down')
-  } else {
-    screenY.value = scrollTop
-    if (videoIndex.value) {
+//
+const videoIndex:any = ref(0)
+const touchStartY:any = ref(0)
+const touchstart = (e:any) => {
+  e.preventDefault()
+  touchStartY.value = e.changedTouches[0].pageY
+}
+const touchend = (e:any) => {
+  e.preventDefault()
+  const touchEndY:any = e.changedTouches[0].pageY
+  const moveY = touchEndY - touchStartY.value
+
+  if (Math.abs(moveY) > 30) {
+    if (moveY < 0) {
+      // down
+      if (videoIndex.value < videoList.value.length - 1) {
+        videoIndex.value = videoIndex.value + 1
+        const vidRef:any = document.getElementById(`vid${videoIndex.value}`)
+        vidRef.scrollIntoView(true)
+      }
+    } else if (videoIndex.value) {
+      // up
       videoIndex.value = videoIndex.value - 1
-      document.getElementById(`vid${videoIndex.value}`).scrollIntoView(true)
+      const vidRef:any = document.getElementById(`vid${videoIndex.value}`)
+      vidRef.scrollIntoView(true)
     }
-    // console.log('up')
   }
 }
 const initPage = async () => {
   await initVideoPlayerConfig()
   await changeList()
-  await window.addEventListener('scroll', doScroll, true)
+  const mainRef:any = document.getElementById('mainRef')
+  mainRef.addEventListener('touchstart', touchstart)
+  mainRef.addEventListener('touchend', touchend)
 }
 onMounted(() => {
   initPage()
-})
-onUnmounted(() => {
-  window.removeEventListener('scroll', doScroll, true)
 })
 </script>
 
